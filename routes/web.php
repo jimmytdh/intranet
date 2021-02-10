@@ -7,6 +7,7 @@ use App\Http\Controllers\LoadController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\NodeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 
 use App\Http\Middleware\Authenticate;
 
@@ -16,6 +17,8 @@ Route::post('/login',[LoginController::class,'validateLogin']);
 
 Route::middleware([Authenticate::class])->group(function () {
     Route::get('/',[HomeController::class,'index'])->name('home');
+
+    Route::get('/search',[SearchController::class,'index'])->name('search');
 
     //manage files
     Route::post('/upload/{id}',[FileController::class,'store'])->name('upload');

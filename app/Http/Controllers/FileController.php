@@ -31,10 +31,10 @@ class FileController extends Controller
 
     public function download($id)
     {
-        $file = File::find($id)->path;
-        $path = storage_path()."/app/upload/".$file;
+        $file = File::find($id);
+        $path = storage_path()."/app/upload/".$file->path;
         if (file_exists($path)) {
-            return Response::download($path);
+            return Response::download($path,$file->title);
         }
         return 'error';
     }

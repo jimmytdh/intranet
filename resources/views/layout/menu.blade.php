@@ -9,6 +9,9 @@
                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a>
                 </li>
+                <li class="nav-item {{ request()->is('search') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ url('/search') }}"><i class="fa fa-search"></i> Search</a>
+                </li>
                 @can('admin')
                 <li class="nav-item {{ request()->is('folders') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/folders') }}"><i class="fa fa-folder-o"></i> Manage Folders</a>
