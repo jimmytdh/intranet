@@ -32,6 +32,7 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/users',[UserController::class,'index'])->name('users');
     Route::post('/users/add',[UserController::class,'add'])->name('add.access');
     Route::post('/users/destroy',[UserController::class,'destroy']);
+    Route::get('/users/update',[UserController::class,'updateUser']);
 
 
     Route::get('/load/{id}',[LoadController::class,'index']);
