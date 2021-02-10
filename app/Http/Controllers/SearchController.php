@@ -61,7 +61,8 @@ class SearchController extends Controller
                             $color = 'danger';
                             break;
                     }
-                    return "<span class='font-weight-bold text-$color'><i class='fa $icon'></i> $row->ext</span>";
+                    $url = url('download/'.$row->id);
+                    return "<a target='_blank' href='$url' class='font-weight-bold text-$color'><i class='fa $icon'></i> $row->ext</a>";
                 })
                 ->addColumn('created_at', function ($row){
                     return Carbon::parse($row->created_at)->format('M d, Y h:i A');
