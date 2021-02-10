@@ -14,7 +14,8 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_priv')
+        DB::connection('users')
+            ->table('user_priv')
             ->insert([
                 'user_id' => 1,
                 'syscode' => 'intranet',
