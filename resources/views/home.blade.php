@@ -57,8 +57,11 @@
             <div class="box box-danger">
                 <div class="box-body load_content pt-2 pl-4 pr-4 pb-3">
                     <h1 class="text-danger title-header">Welcome to Intranet</h1>
+                    <div class="img-thumbnail">
+                        <img src="{{ asset('/images/dms.jpg') }}" width="100%" alt="">
+                    </div>
                     <p>
-                        An INTRANET (Document Management System) is a web-based information system that share information, downloadable forms, operational manuals, and other documents within the organization, usually to the exclusion of access by outsiders.
+                        An INTRANET (Document Management System) is a web-based information system that share information, downloadable forms, operation manuals, and other documents within the organization, usually to the exclusion of access by outsiders.
                     </p>
                     <p>
                         Document management, often referred to as Document Management Systems (DMS), is the use of a computer system and software to store, manage and track electronic documents and electronic images of paper-based information captured through the use of a document scanner.
