@@ -34,7 +34,7 @@ class FileController extends Controller
         $file = File::find($id);
         $path = storage_path()."/app/upload/".$file->path;
         if (file_exists($path)) {
-            return Response::download($path,$file->title);
+            return Response::download($path,"$file->title.$file->ext");
         }
         return 'error';
     }
