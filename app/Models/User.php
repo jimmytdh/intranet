@@ -49,7 +49,10 @@ class User extends Authenticatable
 
     public function level()
     {
-        return $this->userPriv()->where('syscode','intranet')->first()->level;
+        $check = $this->userPriv()->where('syscode','intranet')->first();
+        if($check)
+            return $check->level;
+        return 'standard';
     }
 
     public function approved()
