@@ -27,6 +27,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Gate::before(function ($user){
+            return $user->isAdmin();
+        });
+
         Gate::define('admin',function (User $user) {
             if($user->level()=='admin'){
                 return true;
@@ -35,18 +40,14 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('upload.file',function (User $user, $node) {
-            if($user->level()=='admin'){
-                return true;
-            }else if($user->isApproved($node->id)){
+            if($user->isApproved($node->id)){
                 return true;
             }
             return false;
         });
 
         Gate::define('delete.file',function (User $user, $node) {
-            if($user->level()=='admin'){
-                return true;
-            }else if($user->isApproved($node->id)){
+            if($user->isApproved($node->id)){
                 return true;
             }
             return false;
@@ -60,9 +61,6 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('delete.node',function (User $user, $node) {
-            if($user->level()=='admin'){
-                return true;
-            }
             return false;
         });
     }

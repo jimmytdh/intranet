@@ -12,14 +12,14 @@
                 <li class="nav-item {{ request()->is('search') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/search') }}"><i class="fa fa-search"></i> Search</a>
                 </li>
-                @can('admin')
+                @if(auth()->user()->isAdmin())
                 <li class="nav-item {{ request()->is('folders') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/folders') }}"><i class="fa fa-folder-o"></i> Manage Folders</a>
                 </li>
                 <li class="nav-item {{ request()->is('users') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/users') }}"><i class="fa fa-users"></i> Users</a>
                 </li>
-                @endcan
+                @endif
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                         <i class="fa fa-user"></i> Hi, {{ ucfirst(strtolower(Auth::user()->fname)) }}

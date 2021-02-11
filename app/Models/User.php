@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->approved()->where('node_id',$node_id)->first();
     }
+
+    public function isAdmin()
+    {
+        return $this->userPriv()->where('syscode','intranet')->where('level','admin')->exists();
+    }
 }
