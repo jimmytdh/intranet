@@ -25,15 +25,7 @@ class NodeController extends Controller
 
     public function create(Request $req,$id)
     {
-        if(!self::hasFile($id)){
-            $data= array(
-                'parent_id' => $id,
-                'title' => $req->title,
-                'type' => self::nodeType($id)
-            );
-            Node::create($data);
-            return 1;
-        }else if($req->type=='Main'){
+        if($req->type=='Main'){
             $parent_id = Node::find($id)->parent_id;
             $data = array(
                 'parent_id' => $parent_id,
@@ -42,7 +34,33 @@ class NodeController extends Controller
             );
             Node::create($data);
             return 1;
+        }else if(!self::hasFile($id)){
+            $data= array(
+                'parent_id' => $id,
+                'title' => $req->title,
+                'type' => self::nodeType($id)
+            );
+            Node::create($data);
+            return 1;
         }
+//        if(!self::hasFile($id)){
+//            $data= array(
+//                'parent_id' => $id,
+//                'title' => $req->title,
+//                'type' => self::nodeType($id)
+//            );
+//            Node::create($data);
+//            return 1;
+//        }else if($req->type=='Main'){
+//            $parent_id = Node::find($id)->parent_id;
+//            $data = array(
+//                'parent_id' => $parent_id,
+//                'title' => $req->title,
+//                'type' =>  ($parent_id==0) ? 'main': self::nodeType($parent_id)
+//            );
+//            Node::create($data);
+//            return 1;
+//        }
         return 0;
     }
 
