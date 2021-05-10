@@ -28,10 +28,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function ($user){
-            return $user->isAdmin();
-        });
-
+//        Gate::before(function ($user){
+//            return $user->isAdmin();
+//        });
+//
         Gate::define('admin',function (User $user) {
             if($user->level()=='admin'){
                 return true;
@@ -61,7 +61,14 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('delete.node',function (User $user, $node) {
+            if($user->level()=='admin'){
+                return true;
+            }
             return false;
         });
+//
+//        Gate::after(function ($user){
+//            return $user->isAdmin();
+//        });
     }
 }

@@ -25,16 +25,22 @@ class UserController extends Controller
                 ->addColumn('node',function($row){
                     $node = Node::find($row->node_id);
                     $title = '';
-                    if(NodeController::hasParent($node->parent_id)){
-                        $parent = Node::find($node->parent_id);
-                        if(NodeController::hasParent($parent->id)){
-                            $title = Node::find($parent->id)->title." &#187; ".Node::find($node->parent_id)->title." &#187; ".$node->title;
+
+                    if($node){
+                        if(NodeController::hasParent($node->parent_id)){
+                            $parent = Node::find($node->parent_id);
+                            if(NodeController::hasParent($parent->id)){
+                                $title = Node::find($parent->id)->title." &#187; ".Node::find($node->parent_id)->title." &#187; ".$node->title;
+                            }else{
+                                $title = Node::find($node->parent_id)->title." &#187; ".$node->title;
+                            }
                         }else{
-                            $title = Node::find($node->parent_id)->title." &#187; ".$node->title;
+                            $title = $node->title;
                         }
                     }else{
-                        $title = $node->title;
+                        $title = 'None';
                     }
+
                     return $title;
                 })
                 ->addColumn('created_at',function ($row){

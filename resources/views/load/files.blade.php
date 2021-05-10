@@ -77,7 +77,10 @@
         </span>
     @endif
 <hr>
+
+
 @can('upload.file',$node)
+
     <div class="box-dashed">
         <form action="{{ route('upload', $node->id) }}" method="POST" enctype="multipart/form-data" id="submitForm">
             {{ csrf_field() }}

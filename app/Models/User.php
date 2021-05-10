@@ -62,6 +62,9 @@ class User extends Authenticatable
 
     public function isApproved($node_id)
     {
+        if($this->isAdmin()){
+            return true;
+        }
         return $this->approved()->where('node_id',$node_id)->first();
     }
 

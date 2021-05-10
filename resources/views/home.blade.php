@@ -16,6 +16,9 @@
     <div id="loader-wrapper" style="visibility: hidden;">
         <div id="loader"></div>
     </div>
+    <?php
+        $user = Auth::user();
+    ?>
 
     <div class="row">
         <div class="col-md-4">
